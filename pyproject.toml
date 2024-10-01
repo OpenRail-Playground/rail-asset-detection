@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "rail-asset-detection"
+version = "0.1.0"
+description = "Rail Asset Detection Model"
+authors = ["Daniel Ringler <daniel.ringler@deutschebahn.com>"]
+license = "Apache 2.0"
+readme = "README.md"
+packages = [{ include = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+ultralytics = "^8.3.1"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.8"
+pytest = "^8.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

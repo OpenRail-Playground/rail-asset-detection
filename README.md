@@ -1,6 +1,16 @@
-# Our Cool Project
+# Rail Asset Detection
 
-*Short description what the project is about*
+Detecting rail assets such as the blue platform displays on the station platforms.
+
+### Tasks 
+
+#### Machine Learning
+* Convert Images
+* Label Images
+* Train object detection model
+
+#### Extract Coordinates
+* Get the geo coordinates from the detected objects
 
 ## Background
 
@@ -13,6 +23,8 @@ This project has been initiated during the [Dreiländerhack 2024](https://data.d
 ## Install
 
 *How can a user install the software?*
+
+`poetry install`
 
 ## License
 
