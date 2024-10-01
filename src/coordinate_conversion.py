@@ -47,7 +47,7 @@ def pixel_to_coordinates(path: str, x_pixel: float, y_pixel: float) -> Any:
         return x_coordinate, y_coordinate
 
 
-def dbref_to_wgs84(x_coordinate: float, y_coodinate: float) -> Tuple[float, float, float]:
+def dbref_to_wgs84(x_coordinate: float, y_coordinate: float) -> Tuple[float, float, float]:
     """
     Converts coordinated from DB_REF2016 to WGS84.
 
@@ -55,7 +55,7 @@ def dbref_to_wgs84(x_coordinate: float, y_coodinate: float) -> Tuple[float, floa
     ----------
     x_coordinate : int
         Horizontal coordinate.
-    y_coodinate : int
+    y_coordinate : int
         Vertical coordinate.
 
     Returns:
@@ -71,4 +71,4 @@ def dbref_to_wgs84(x_coordinate: float, y_coodinate: float) -> Tuple[float, floa
     target_srs.ImportFromEPSG(WGS84_EPSG)
 
     transform = osr.CoordinateTransformation(source_srs, target_srs)
-    return transform.TransformPoint(x_coordinate, y_coodinate)
+    return transform.TransformPoint(x_coordinate, y_coordinate)

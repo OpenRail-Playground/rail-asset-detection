@@ -19,7 +19,7 @@ train_results = model.train(
 metrics = model.val()
 
 # Perform object detection on an image
-results = model("path/to/image.jpg")
+results = model("tmp/a_34358_55129_200_DB_REF_20140425.tif")
 results[0].show()
 
 # Export the model to ONNX format
