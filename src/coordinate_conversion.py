@@ -65,6 +65,8 @@ def dbref_to_wgs84(x_coordinate: float, y_coordinate: float) -> Tuple[float, flo
     """
     db_ref_zone = int(str(x_coordinate)[0])
     source_srs = osr.SpatialReference()
+    if db_ref_zone not in DB_REF2016_ZONES.keys():
+        return (None, None, None,)
     source_srs.ImportFromEPSG(DB_REF2016_ZONES[db_ref_zone])
     
     target_srs = osr.SpatialReference()
