@@ -4,7 +4,7 @@ Copied from https://github.com/ultralytics/ultralytics
 
 from ultralytics import YOLO
 
-BLUE_BOX_TRAIN_YAML = "coco8.yaml"  # "tmp/train/carl_wo_images_test_v1/data.yaml"
+BLUE_BOX_TRAIN_YAML = "/Users/danielringler/git/3lh/datasets/carl_manual_images_test_v1/data.yaml" # "coco8.yaml"  # "tmp/train/carl_wo_images_test_v1/data.yaml"
 
 # Load a model
 model = YOLO("yolo11n.pt")
