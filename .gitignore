@@ -3,4 +3,6 @@
 tmp/*
 **/__pycache__
 .venv
+datasets
 runs/*
+datasets
