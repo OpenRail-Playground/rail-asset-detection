@@ -5,8 +5,10 @@ from ultralytics import YOLO
 
 from src.coordinate_conversion import dbref_to_wgs84, pixel_to_coordinates
 
-MODEL = "yolo11n.pt"
-FOLDER_OR_IMAGE_PATH = "tmp/a_34358_55129_200_DB_REF_20140425.tif"
+MODEL = "/Users/danielringler/git/3lh/rail-asset-detection/models/full_images_300_epoch/weights/best.pt"  # "yolo11n.pt"
+# MODEL = "/Users/danielringler/git/3lh/rail-asset-detection/models/tiled_images_220_epoch/weights/best.pt"
+FOLDER_OR_IMAGE_PATH = "tmp/to_predict/35052_52862_300_DB_REF2016_20210328.tif"  # "/34786_53286_300_DB_REF2016_20210328.tif"
+# "/Users/danielringler/git/3lh/datasets/carl_manual_images_test_v1/train/images/"  # "tmp/img/"  # "a_34358_55129_200_DB_REF_20140425.tif"
 
 # Load a model
 model = YOLO(MODEL)
@@ -19,14 +21,17 @@ def calculate_center(a: float, b: float) -> float:
     return float((a + b) / 2)
 
 
-result_dict = {}
+# result_dict = {}
+result_list = []
 
 for result in detection_results:
     # print(result.path)
-    # result.show()
-    box_results = {}
+    result.show()
+    # box_results = []
     for i, box in enumerate(result.boxes):
         box_class = int(box.cls[0])
+        # if box_class == 0:
+        #     print(f"FOUND blue box in image: {result.path}")
         box_class_name = result.names[box_class]
         # print(f"result {i} with class {box_class_name}.")
         xyxy = box.xyxy[0]
@@ -43,15 +48,22 @@ for result in detection_results:
         )
         # print(f"latitute and longitute: {latitute}, {longitute}")
 
-        box_results[i] = {
-            "box_class": box_class,
-            "box_class_name": box_class_name,
-            "coordinates": {
-                "DB_REF": [x_coordinate, y_coordinate],
-                "WGS84": [latitute, longitute],
-            },
-        }
+        result_list.append(
+            {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [longitute, latitute],
+                },
+                "properties": {
+                    "name": "i",
+                    "box_class": box_class,
+                    "box_class_name": box_class_name,
+                    "DB_REF": [x_coordinate, y_coordinate],
+                }
+            }
+        )
 
-    result_dict[str(result.path)] = box_results
+    # result_list.append()
     
-print(json.dumps(result_dict, sort_keys=True, indent=3))
+print(json.dumps(result_list, sort_keys=True, indent=3))
